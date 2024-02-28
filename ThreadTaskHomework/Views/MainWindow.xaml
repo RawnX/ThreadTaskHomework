@@ -1,0 +1,147 @@
+﻿<Window x:Class="ThreadTaskHomework.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ThreadTaskHomework"
+        mc:Ignorable="d"
+       Title="ThreadHomework"
+        Height="650" 
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Width="800"
+        Name="MyWindow">
+    <Window.Background>
+        <LinearGradientBrush>
+            <GradientStop Color="CornflowerBlue" Offset="0"/>
+            <GradientStop Color="CornflowerBlue" Offset="0.5"/>
+            <GradientStop Color="CornflowerBlue" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1.5*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0"
+                BorderBrush="Black"
+                BorderThickness="2"/>
+        <Grid Grid.Column="0"
+              Name="myGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+
+            <TextBox Grid.Row="0"
+                     Style="{StaticResource txbStyle}"
+                     Text="{Binding TxtBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <TextBox.InputBindings>
+                    <KeyBinding Key="Enter"
+                                Command="{Binding KeyDownCommand}"
+                                CommandParameter="{Binding ElementName=txt_box}">
+
+                    </KeyBinding>
+                </TextBox.InputBindings>
+            </TextBox>
+
+            <Border Grid.Row="1"
+                    BorderBrush="Black"
+                    BorderThickness="0 3 0 0 "/>
+
+            <ListBox Grid.Row="1"
+                     Style="{StaticResource listboxStyle}"
+                     ItemsSource="{Binding myListBox,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        </Grid>
+
+        <Border Grid.Column="1"
+                BorderBrush="Black"
+                BorderThickness="0 3 3 3 "/>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <ListBox Grid.Row="0"
+                     Name="crytoListbox"
+                     ItemsSource="{Binding CryptographyListBox}"
+                     Style="{StaticResource listboxStyle}"/>
+
+            <StackPanel Grid.Row="1"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <Button Style="{StaticResource btnStyle}"
+                        Command="{Binding PlayCommand}"
+                        ToolTip="Play"
+                        >
+                    <Ellipse Height="70"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center"
+                             Width="80">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="/Images/play.png"
+                                        Stretch="Fill"/>
+                        </Ellipse.Fill>
+
+                    </Ellipse>
+                </Button>
+
+                <Button Style="{StaticResource btnStyle}"
+                        Command="{Binding PauseCommand}"
+                        CommandParameter="{Binding ElementName=crytoListbox}"
+                        ToolTip="Pause"
+                        >
+                    <Ellipse Height="70"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center"
+                             Width="80">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="/Images/pause.png"
+                                        Stretch="Fill"/>
+                        </Ellipse.Fill>
+
+                    </Ellipse>
+                </Button>
+
+                <Button Style="{StaticResource btnStyle}"
+                        Command="{Binding ResumeCommand}"
+                        CommandParameter="{Binding ElementName=crytoListbox}"
+                        ToolTip="Resume"
+                        >
+                    <Ellipse Height="70"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center"
+                             Width="80">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="/Images/resume.png" 
+                                        Stretch="Fill"/>
+                        </Ellipse.Fill>
+
+                    </Ellipse>
+                </Button>
+
+
+                <Button Style="{StaticResource btnStyle}"
+                        Command="{Binding StopCommand}"
+                        ToolTip="Stop"
+                        >
+                    <Ellipse Height="70"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center"
+                             Width="80">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="/Images/stop.png"
+                                        Stretch="Fill"/>
+                        </Ellipse.Fill>
+
+                    </Ellipse>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
+
